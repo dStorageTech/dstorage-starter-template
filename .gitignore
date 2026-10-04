@@ -1,0 +1,11 @@
+node_modules/
+dist/
+
+# Copied from the installed SDK package by `npm run dev` (scripts/copy-zk-artifacts.mjs)
+public/keys/
+public/zkir/
+
+.env
+.env.*
+*.log
+.DS_Store
