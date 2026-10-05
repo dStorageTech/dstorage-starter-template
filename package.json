@@ -20,7 +20,7 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@dstorage-tech/dstorage-sdk": "^0.2.3"
+    "@dstorage-tech/dstorage-sdk": "^0.2.4"
   },
   "overrides": {
     "axios": "^1.18.1",
