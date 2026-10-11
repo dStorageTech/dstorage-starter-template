@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#14b8a6"/>
+      <stop offset="1" stop-color="#4338ca"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#bg)"/>
+  <!-- "d": a ring of storage nodes (bowl) plus the stem -->
+  <g stroke="#fff" stroke-width="5" stroke-linecap="round" fill="none">
+    <circle cx="27" cy="38" r="13"/>
+    <path d="M38 12v39"/>
+  </g>
+  <!-- distributed nodes on the ring -->
+  <g fill="#5eead4" stroke="#fff" stroke-width="2.5">
+    <circle cx="14" cy="38" r="4.5"/>
+    <circle cx="27" cy="25" r="4.5"/>
+    <circle cx="27" cy="51" r="4.5"/>
+  </g>
+  <!-- keyhole: encrypted contents -->
+  <g fill="#fff">
+    <circle cx="27" cy="36" r="3.2"/>
+    <path d="M25.4 37.5h3.2l1 5.5h-5.2z"/>
+  </g>
+</svg>
