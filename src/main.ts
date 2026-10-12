@@ -31,6 +31,13 @@ async function run() {
     zkConfigBaseUrl: window.location.origin, // serves the keys/ and zkir/ copied to public/
     network: "preprod",
     proofServerEndpoint: "http://localhost:6300",
+    // Optional: if needed, uncomment and set your own node and indexer endpoints.
+    // In connector mode, the indexer endpoints default to the connected wallet's
+    // configuration; values set here take priority.
+    // nodeEndpoint: "https://<your-node-host>",
+    // nodeWsEndpoint: "wss://<your-node-host>",
+    // indexerEndpoint: "https://<your-indexer-host>/api/graphql",
+    // indexerWsEndpoint: "wss://<your-indexer-host>/api/graphql/ws",
     logger: console,
   });
 
