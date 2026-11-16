@@ -29,20 +29,22 @@ No external services are needed.
 | Path                            | Purpose                                                                 |
 | ------------------------------- | ----------------------------------------------------------------------- |
 | `src/index.ts`                  | Node.js entry point (`npm start`): Mock, Local & Simulator, and Managed Payments guides |
-| `index.html`, `src/main.ts`     | Browser entry point (`npm run dev`): Midnight Network Adapter and Passkey Encryption guides |
-| `scripts/copy-zk-artifacts.mjs` | Copies the `DataRegistry` contract's ZK artifacts into `public/` before `npm run dev` |
+| `index.html`, `src/main.ts`     | Browser entry point (`npm run dev`): Midnight Network Adapter, Passkey Encryption, and Managed Payments on Midnight guides |
+| `scripts/copy-zk-artifacts.mjs` | Copies the `DataRegistry` contract's ZK artifacts (`keys/`, `zkir/`, `compiler/`) into `public/` before `npm run dev` and `npm run build` |
 | `vite.config.ts`                | Vite plugins the Midnight SDK needs in the browser (WASM, top-level await, Node polyfills) |
 
 ## Following along with the guides
 
 | Guide                                                                                   | Entry point    | Run with      |
 | --------------------------------------------------------------------------------------- | -------------- | ------------- |
+| [Build with AI](https://dstorage.pro/docs/guide/build-with-ai.html)                          | any            | (prompts for your coding agent) |
 | [Mock Adapters](https://dstorage.pro/docs/guide/mock-adapters.html)                          | `src/index.ts` | `npm start`   |
 | [Core Concepts](https://dstorage.pro/docs/guide/core-concepts.html)                          | conceptual only | (nothing to run) |
 | [Local & Simulator Adapters](https://dstorage.pro/docs/guide/local-simulator-adapters.html)  | `src/index.ts` | `npm start`   |
 | [Managed Payments Service](https://dstorage.pro/docs/guide/managed-payments-service.html)    | `src/index.ts` | `npm start`   |
 | [Midnight Network Adapter](https://dstorage.pro/docs/guide/midnight-network-adapter.html)    | `src/main.ts`  | `npm run dev` |
 | [Passkey Encryption](https://dstorage.pro/docs/guide/passkey-encryption.html)                | `src/main.ts`  | `npm run dev` |
+| [Managed Payments on Midnight](https://dstorage.pro/docs/guide/managed-payments-midnight.html) | `src/main.ts`  | `npm run dev` |
 
 ### Node.js guides
 
@@ -53,25 +55,34 @@ configure, `init()`, `store()`, `retrieveByRefId()`, `destroy()`. Replace the ad
 
 ### Browser guides
 
-The Midnight Network Adapter and Passkey Encryption guides run in the browser, because they
-connect to a Midnight wallet extension (1AM by default, or Lace):
+The Midnight Network Adapter, Passkey Encryption, and Managed Payments on Midnight guides run in
+the browser, because they connect to a Midnight wallet extension (1AM by default, or Lace):
 
 ```bash
 npm run dev
 ```
 
-This copies the compiled `DataRegistry` contract's ZK artifacts into `public/`, starts a Vite dev
-server, and serves a page with a **Run** button. The button runs the same `init()` → `store()` →
-`retrieveByRefId()` sequence. Before you click it, set up the proof server, arlocal, and the
+This copies the compiled `DataRegistry` contract's ZK artifacts (`keys/`, `zkir/` and
+`compiler/`) from the installed SDK into `public/`, starts a Vite dev server, and serves a page
+with a **Run** button. The button runs the same `init()` → `store()` → `retrieveByRefId()`
+sequence. Before you click it, set up the proof server, arlocal, and the
 wallet as described in the guide's Prerequisites section.
 
-`npm run build` creates a production bundle in `dist/`.
+`npm run build` copies the same artifacts and creates a production bundle in `dist/`, with the
+artifacts at its root. Deploy all of `dist/`: the app fetches the artifacts from its own origin
+(`zkConfigBaseUrl` in `src/main.ts`), and the Midnight SDK refuses to run without `compiler/`.
+The copied folders are gitignored and re-copied on every run, so after upgrading the SDK just run
+`npm run dev` or `npm run build` again.
 
 ## Credentials
 
-Never commit secrets such as a dStorage Pro auth token (used by the Managed Payments Service
-guide). Load them from environment variables instead, for example
+Never commit secrets such as a dStorage Pro `ds_*` auth token (used by the Managed Payments
+Service guide). In Node.js, load them from environment variables instead, for example
 `authToken: process.env.DSTORAGE_AUTH_TOKEN`. `.env` files are already gitignored.
+
+Never put a `ds_*` token in browser code (`src/main.ts`): anything there ships in the bundle. The
+Managed Payments on Midnight guide uses a scoped JWT token from the dStorage Pro portal instead,
+which is designed to be embedded in a browser app.
 
 ## License
 
