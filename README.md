@@ -31,6 +31,7 @@ No external services are needed.
 | `src/index.ts`                  | Node.js entry point (`npm start`): Mock, Local & Simulator, and Managed Payments guides |
 | `index.html`, `src/main.ts`     | Browser entry point (`npm run dev`): Midnight Network Adapter, Passkey Encryption, and Managed Payments on Midnight guides |
 | `scripts/copy-zk-artifacts.mjs` | Copies the `DataRegistry` contract's ZK artifacts (`keys/`, `zkir/`, `compiler/`) into `public/` before `npm run dev` and `npm run build` |
+| `scripts/clean.mjs`             | `npm run clean`: removes `node_modules/`, `dist/` and the copied ZK artifacts in `public/` (keeps `package-lock.json`) |
 | `vite.config.ts`                | Vite plugins the Midnight SDK needs in the browser (WASM, top-level await, Node polyfills) |
 
 ## Following along with the guides

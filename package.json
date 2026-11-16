@@ -18,7 +18,8 @@
     "predev": "node scripts/copy-zk-artifacts.mjs",
     "dev": "vite",
     "prebuild": "node scripts/copy-zk-artifacts.mjs",
-    "build": "vite build"
+    "build": "vite build",
+    "clean": "node scripts/clean.mjs"
   },
   "dependencies": {
     "@dstorage-tech/dstorage-sdk": "^0.4.1"
