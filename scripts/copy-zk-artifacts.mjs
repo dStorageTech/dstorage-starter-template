@@ -1,4 +1,4 @@
-// Copies the DataRegistry contract's compiled ZK artifacts (keys/, zkir/) from the
+// Copies the DataRegistry contract's compiled ZK artifacts (keys/, zkir/, compiler/) from the
 // installed SDK package into public/, so Vite serves them alongside the app.
 // MidnightChainAdapter's connector mode fetches them over HTTP via zkConfigBaseUrl
 // instead of reading them from disk (that's what provider mode does via zkArtifactsPath).
@@ -12,7 +12,7 @@ const managedDir = path.join(
   "node_modules/@dstorage-tech/dstorage-sdk/dist/contracts/dataregistry/managed",
 );
 
-for (const dir of ["keys", "zkir"]) {
+for (const dir of ["keys", "zkir", "compiler"]) {
   const src = path.join(managedDir, dir);
   const dest = path.join(rootDir, "public", dir);
   await cp(src, dest, { recursive: true });

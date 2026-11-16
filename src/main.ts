@@ -28,7 +28,7 @@ async function run() {
   const chainAdapter = new MidnightChainAdapter({
     walletMode: "connector",
     connectorName: "1am", // matches window.midnight['1am'] by injected key or wallet name — omit to use whichever wallet is found first
-    zkConfigBaseUrl: window.location.origin, // serves the keys/ and zkir/ copied to public/
+    zkConfigBaseUrl: window.location.origin, // serves the keys/, zkir/ and compiler/ copied to public/
     network: "preprod",
     proofServerEndpoint: "http://localhost:6300",
     // Optional: if needed, uncomment and set your own node and indexer endpoints.
